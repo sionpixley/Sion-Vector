@@ -1,0 +1,20 @@
+{
+    "project-name": "custom-cpp-vector",
+    "version": "v1.0.0",
+    "description": "Making a custom vector implementation.",
+    "author": "Sion Pixley",
+    "license": "MIT; LICENSE",
+    "main-file": "main.cpp",
+    "dependencies": {
+        "c++": "14"
+    },
+    "dev-dependencies": {
+        "clang": "v11.x"
+    },
+    "scripts": {
+        "build": "clang++ -O2 -std=c++14 main.cpp -o main",
+        "start": "./main",
+        "timed-start": "time ./main"
+    }
+}
+
