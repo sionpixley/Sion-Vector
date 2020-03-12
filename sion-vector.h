@@ -1,5 +1,5 @@
-#ifndef HEADER_H
-#define HEADER_H
+#ifndef SION_VECTOR_H
+#define SION_VECTOR_H
 
 #include <iostream>
 #include <string>
@@ -92,4 +92,4 @@ namespace sion
     };
 }
 
-#endif // HEADER_H
+#endif // SION_VECTOR_H
