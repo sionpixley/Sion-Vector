@@ -1,5 +1,6 @@
 #include "sion-vector.h"
 
+
 int main()
 {
     sion::vector<std::string> v;
@@ -12,8 +13,9 @@ int main()
         cout << v[i] << endl;
     }
     
-    std::string array[5] = { "4", "5", "6", "7", "8" };
-    v = array;
+    v.clear();
+    v.push_back("3");
+    v.push_back("4");
     for(int i = 0; i < v.size(); i += 1)
     {
         cout << v[i] << endl;
@@ -21,3 +23,4 @@ int main()
     
     return 0;
 }
+

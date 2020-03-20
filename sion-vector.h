@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -81,38 +82,16 @@ namespace sion
         {
             try
             {
-                if(length == 0)
-                {
-                    return 0;
-                }
-                else
-                {
-                    size_t i = 0;
-                    for(; i < length; i += 1)
-                    {
-                        elements[i] = NULL;
-                    }
-                    max_length = 10;
-                    length = 0;
-                    return 0;
-                }
+                std::free(elements);
+                max_length = 10;
+                length = 0;
+                elements = (type*)(std::malloc(max_length * sizeof(type)));
+                return 0;
             }
             catch(...)
             {
                 return 1;
             }
-        }
-        
-        type operator=(type rhs[])
-        {
-            sion::vector<type> temp;
-            size_t rhs_size = sizeof(*rhs) / sizeof(type);
-            size_t i = 0;
-            for(; i < rhs_size; i += 1)
-            {
-                temp.push_back(rhs[i]);
-            }
-            return temp;
         }
         
         type& operator[](size_t index)
@@ -131,3 +110,4 @@ namespace sion
 }
 
 #endif // SION_VECTOR_H
+
