@@ -22,71 +22,7 @@ namespace sion
         size_t length;
         
     public:
-        template<class T>
-        class vector_iter
-        {
-        private:
-            T* pointee;
-            
-        public:
-            using iterator_category = std::random_access_iterator_tag;
-            using value_type = T;
-            using difference_type = std::ptrdiff_t;
-            using pointer = T*;
-            using reference = T&;
-            
-            vector_iter()
-            {
-                pointee = nullptr;
-            }
-            
-            vector_iter(T* ptr)
-            {
-                pointee = ptr;
-            }
-            
-            T& operator *()
-            {
-                return *pointee;
-            }
-            
-            T* operator ->()
-            {
-                return pointee;
-            }
-            
-            vector_iter<T>& operator ++()
-            {
-                ++pointee;
-                return *this;
-            }
-            
-            vector_iter<T>& operator --()
-            {
-                --pointee;
-                return *this;
-            }
-            
-            vector_iter<T>& operator +(int rhs)
-            {
-                pointee = pointee + rhs;
-                return *this;
-            }
-            
-            vector_iter<T>& operator -(int rhs)
-            {
-                pointee = pointee - rhs;
-                return * this;
-            }
-            
-            bool operator ==(vector_iter<T>& rhs)
-            {
-                return this.pointee == rhs.pointee;
-            }
-        };
-        
-        
-        using iterator = vector_iter<type>;
+        using iterator = type*;
         
         vector()
         {
@@ -162,14 +98,14 @@ namespace sion
             }
         }
         
-        iterator begin()
+        type* begin()
         {
-            return iterator(&elements[0]);
+            return &elements[0];
         }
         
-        iterator end()
+        type* end()
         {
-            return iterator(&elements[length - 1] + 1);
+            return &elements[length - 1] + 1;
         }
         
         type& operator[](size_t index)
