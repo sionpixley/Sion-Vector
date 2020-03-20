@@ -2,9 +2,6 @@
 #define SION_VECTOR_H
 
 #include <iostream>
-#include <string>
-#include <iterator>
-#include <algorithm>
 
 
 using std::cout;
