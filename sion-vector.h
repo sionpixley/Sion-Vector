@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -15,15 +16,15 @@ namespace sion
     {
     private:
         type* elements;
-        size_t max_size;
-        size_t size;
+        size_t max_length;
+        size_t length;
         
     public:
         vector()
         {
-            max_size = 10;
-            size = 0;
-            elements = (type*)(std::malloc(max_size * sizeof(type)));
+            max_length = 10;
+            length = 0;
+            elements = (type*)(std::malloc(max_length * sizeof(type)));
         }
         
         ~vector()
@@ -35,18 +36,18 @@ namespace sion
         {
             try
             {
-                if(size == max_size)
+                if(length == max_length)
                 {
-                    max_size *= 2;
-                    elements = (type*)(std::realloc(elements, max_size * sizeof(type)));
-                    elements[size] = item;
-                    size += 1;
+                    max_length *= 2;
+                    elements = (type*)(std::realloc(elements, max_length * sizeof(type)));
+                    elements[length] = item;
+                    length += 1;
                     return 0;
                 }
                 else
                 {
-                    elements[size] = item;
-                    size += 1;
+                    elements[length] = item;
+                    length += 1;
                     return 0;
                 }
             }
@@ -56,30 +57,46 @@ namespace sion
             }
         }
         
-        size_t length()
+        size_t size()
         {
-            return size;
+            return length;
         }
         
         type pop_back()
         {
-            if(size == 0)
+            if(length == 0)
             {
                 type t;
                 return t;
             }
             else
             {
-                type t = elements[size - 1];
-                elements[size - 1] = NULL;
-                size -= 1;
+                type t = elements[length - 1];
+                elements[length - 1] = NULL;
+                length -= 1;
                 return t;
+            }
+        }
+        
+        int clear()
+        {
+            try
+            {
+                std::free(elements);
+                max_length = 10;
+                length = 0;
+                elements = (type*)(std::malloc(max_length * sizeof(type)));
+                return 0;
+            }
+            catch(...)
+            {
+                return 1;
             }
         }
         
         type& operator[](size_t index)
         {
-            if(index >= size)
+            if(index >= length)
             {
                 cout << "Error. Out of bounds." << endl;
                 exit(-1);
@@ -93,3 +110,4 @@ namespace sion
 }
 
 #endif // SION_VECTOR_H
+
