@@ -122,8 +122,7 @@ namespace sion
             }
             else if(mode == "desc")
             {
-                std::sort(begin(), end());
-                std::reverse(begin(), end());
+                std::sort(begin(), end(), std::greater<type>());
             }
             else
             {
@@ -151,8 +150,7 @@ namespace sion
             else if(mode == "desc")
             {
                 vector<type> v = *this;
-                std::sort(v.begin(), v.end());
-                std::reverse(v.begin(), v.end());
+                std::sort(v.begin(), v.end(), std::greater<type>());
                 return v;
             }
             else
@@ -169,6 +167,30 @@ namespace sion
         type* end()
         {
             return &elements[0] + length;
+        }
+        
+        type* rbegin()
+        {
+            if(length == 0)
+            {
+                return &elements[0];
+            }
+            else
+            {
+                return &elements[length - 1];
+            }
+        }
+        
+        type* rend()
+        {
+            if(length == 0)
+            {
+                return &elements[0];
+            }
+            else
+            {
+                return &elements[0] - 1;
+            }
         }
         
         vector<type> operator =(vector<type>& rhs)
