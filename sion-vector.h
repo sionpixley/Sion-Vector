@@ -29,15 +29,15 @@ namespace sion
             elements = (type*)(std::malloc(max_length * sizeof(type)));
         }
         
-        vector(vector<type>& obj)
+        vector(const vector<type>& obj)
         {
-            length = obj.size();
-            max_length = length * 2;
+            max_length = obj.max_length;
+            length = obj.length;
             elements = (type*)(std::malloc(max_length * sizeof(type)));
             size_t i = 0;
-            for(; i < obj.size(); i += 1)
+            for(; i < length; i += 1)
             {
-                elements[i] = obj[i];
+                elements[i] = obj.elements[i];
             }
         }
         
@@ -159,6 +159,18 @@ namespace sion
             }
         }
         
+        void reverse()
+        {
+            std::reverse(begin(), end());
+        }
+        
+        vector<type> reversed()
+        {
+            vector<type> v = *this;
+            std::reverse(v.begin(), v.end());
+            return v;
+        }
+        
         type* begin()
         {
             return elements;
@@ -169,36 +181,31 @@ namespace sion
             return elements + length;
         }
         
-        type* rbegin()
+        /*type* rbegin()
         {
-            /*if(length == 0)
-            {
-                return elements;
-            }
-            else
-            {
-                return elements + length;
-            }*/
             return elements + length;
         }
         
         type* rend()
         {
-            /*if(length == 0)
-            {
-                return elements;
-            }
-            else
-            {
-                return elements - 1;
-            }*/
             return elements;
-        }
+        }*/
         
-        vector<type> operator =(vector<type>& rhs)
+        vector<type>& operator =(const vector<type>& obj)
         {
-            vector<type> v(&rhs);
-            return v;
+            if(this != &obj)
+            {
+                std::free(elements);
+                max_length = obj.max_length;
+                length = obj.length;
+                elements = (type*)(std::malloc(max_length * sizeof(type)));
+                size_t i = 0;
+                for(; i < length; i += 1)
+                {
+                    elements[i] = obj.elements[i];
+                }
+            }
+            return *this;
         }
         
         type& operator [](size_t index)
