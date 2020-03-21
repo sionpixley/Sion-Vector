@@ -161,36 +161,38 @@ namespace sion
         
         type* begin()
         {
-            return &elements[0];
+            return elements;
         }
         
         type* end()
         {
-            return &elements[0] + length;
+            return elements + length;
         }
         
         type* rbegin()
         {
-            if(length == 0)
+            /*if(length == 0)
             {
-                return &elements[0];
+                return elements;
             }
             else
             {
-                return &elements[length - 1];
-            }
+                return elements + length;
+            }*/
+            return elements + length;
         }
         
         type* rend()
         {
-            if(length == 0)
+            /*if(length == 0)
             {
-                return &elements[0];
+                return elements;
             }
             else
             {
-                return &elements[0] - 1;
-            }
+                return elements - 1;
+            }*/
+            return elements;
         }
         
         vector<type> operator =(vector<type>& rhs)
