@@ -1,7 +1,8 @@
 #ifndef SION_VECTOR_H
 #define SION_VECTOR_H
 
-#include <iostream>
+#include <string>
+#include <algorithm>
 
 
 using std::cout;
@@ -95,6 +96,24 @@ namespace sion
             }
         }
         
+        vector<type> sort(std::string mode)
+        {
+            std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
+            
+            if(mode == "asc")
+            {
+                
+            }
+            else if(mode == "desc")
+            {
+                
+            }
+            else
+            {
+                throw std::invalid_argument("Please use a valid argument: asc or desc");
+            }
+        }
+        
         type* begin()
         {
             return &elements[0];
@@ -102,15 +121,14 @@ namespace sion
         
         type* end()
         {
-            return &elements[length - 1] + 1;
+            return &elements[0] + length;
         }
         
         type& operator[](size_t index)
         {
-            if(index >= length)
+            if((index >= length) || (index < 0))
             {
-                cout << "Error. Out of bounds." << endl;
-                exit(-1);
+                throw std::out_of_range("Index out of bounds.");
             }
             else
             {
