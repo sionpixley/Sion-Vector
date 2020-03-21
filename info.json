@@ -7,9 +7,6 @@
     "main-file": "sion-vector.h",
     "dependencies": {
         "c++": "14"
-    },
-    "dev-dependencies": {
-        "clang": "v11.x"
     }
 }
 
