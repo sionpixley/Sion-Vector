@@ -29,6 +29,18 @@ namespace sion
             elements = (type*)(std::malloc(max_length * sizeof(type)));
         }
         
+        vector(vector<type>& obj)
+        {
+            length = obj.size();
+            max_length = length * 2;
+            elements = (type*)(std::malloc(max_length * sizeof(type)));
+            size_t i = 0;
+            for(; i < obj.size(); i += 1)
+            {
+                elements[i] = obj[i];
+            }
+        }
+        
         ~vector()
         {
             std::free(elements);
@@ -74,7 +86,6 @@ namespace sion
             else
             {
                 type t = elements[length - 1];
-                elements[length - 1] = nullptr;
                 length -= 1;
                 return t;
             }
@@ -96,17 +107,53 @@ namespace sion
             }
         }
         
-        vector<type> sort(std::string mode)
+        void sort()
+        {
+            std::sort(begin(), end());
+        }
+        
+        void sort(std::string mode)
+        {
+            std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
+                
+            if(mode == "asc")
+            {
+                std::sort(begin(), end());
+            }
+            else if(mode == "desc")
+            {
+                std::sort(begin(), end());
+                std::reverse(begin(), end());
+            }
+            else
+            {
+                throw std::invalid_argument("Please use a valid argument: asc or desc");
+            }
+        }
+        
+        vector<type> sorted()
+        {
+            vector<type> v = *this;
+            std::sort(v.begin(), v.end());
+            return v;
+        }
+        
+        vector<type> sorted(std::string mode)
         {
             std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
             
             if(mode == "asc")
             {
-                
+                vector<type> v = *this;
+                std::sort(v.begin(), v.end());
+                return v;
             }
             else if(mode == "desc")
             {
-                
+                vector<type> v = *this;
+                std::sort(v.begin(), v.end());
+                std::reverse(v.begin(), v.end());
+                return v;
             }
             else
             {
@@ -124,7 +171,13 @@ namespace sion
             return &elements[0] + length;
         }
         
-        type& operator[](size_t index)
+        vector<type> operator =(vector<type>& rhs)
+        {
+            vector<type> v(&rhs);
+            return v;
+        }
+        
+        type& operator [](size_t index)
         {
             if((index >= length) || (index < 0))
             {
