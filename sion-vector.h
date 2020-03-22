@@ -1,7 +1,8 @@
 #ifndef SION_VECTOR_H
 #define SION_VECTOR_H
 
-#include <iostream>
+#include <string>
+#include <algorithm>
 
 
 using std::cout;
@@ -26,6 +27,18 @@ namespace sion
             max_length = 10;
             length = 0;
             elements = (type*)(std::malloc(max_length * sizeof(type)));
+        }
+        
+        vector(const vector<type>& obj)
+        {
+            max_length = obj.max_length;
+            length = obj.length;
+            elements = (type*)(std::malloc(max_length * sizeof(type)));
+            size_t i = 0;
+            for(; i < length; i += 1)
+            {
+                elements[i] = obj.elements[i];
+            }
         }
         
         ~vector()
@@ -73,7 +86,6 @@ namespace sion
             else
             {
                 type t = elements[length - 1];
-                elements[length - 1] = nullptr;
                 length -= 1;
                 return t;
             }
@@ -95,22 +107,112 @@ namespace sion
             }
         }
         
+        void sort()
+        {
+            std::sort(begin(), end());
+        }
+        
+        void sort(std::string mode)
+        {
+            std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
+                
+            if(mode == "asc")
+            {
+                std::sort(begin(), end());
+            }
+            else if(mode == "desc")
+            {
+                std::sort(begin(), end(), std::greater<type>());
+            }
+            else
+            {
+                throw std::invalid_argument("Please use a valid argument: asc or desc");
+            }
+        }
+        
+        vector<type> sorted()
+        {
+            vector<type> v = *this;
+            std::sort(v.begin(), v.end());
+            return v;
+        }
+        
+        vector<type> sorted(std::string mode)
+        {
+            std::transform(mode.begin(), mode.end(), mode.begin(), ::tolower);
+            
+            if(mode == "asc")
+            {
+                vector<type> v = *this;
+                std::sort(v.begin(), v.end());
+                return v;
+            }
+            else if(mode == "desc")
+            {
+                vector<type> v = *this;
+                std::sort(v.begin(), v.end(), std::greater<type>());
+                return v;
+            }
+            else
+            {
+                throw std::invalid_argument("Please use a valid argument: asc or desc");
+            }
+        }
+        
+        void reverse()
+        {
+            std::reverse(begin(), end());
+        }
+        
+        vector<type> reversed()
+        {
+            vector<type> v = *this;
+            std::reverse(v.begin(), v.end());
+            return v;
+        }
+        
         type* begin()
         {
-            return &elements[0];
+            return elements;
         }
         
         type* end()
         {
-            return &elements[length - 1] + 1;
+            return elements + length;
         }
         
-        type& operator[](size_t index)
+        /*type* rbegin()
         {
-            if(index >= length)
+            return elements + length;
+        }
+        
+        type* rend()
+        {
+            return elements;
+        }*/
+        
+        vector<type>& operator =(const vector<type>& obj)
+        {
+            if(this != &obj)
             {
-                cout << "Error. Out of bounds." << endl;
-                exit(-1);
+                std::free(elements);
+                max_length = obj.max_length;
+                length = obj.length;
+                elements = (type*)(std::malloc(max_length * sizeof(type)));
+                size_t i = 0;
+                for(; i < length; i += 1)
+                {
+                    elements[i] = obj.elements[i];
+                }
+            }
+            return *this;
+        }
+        
+        type& operator [](size_t index)
+        {
+            if((index >= length) || (index < 0))
+            {
+                throw std::out_of_range("Index out of bounds.");
             }
             else
             {
