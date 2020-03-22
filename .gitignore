@@ -40,4 +40,5 @@ main.cpp
 
 # For releases
 *.tbz2
+.DS_Store
 
