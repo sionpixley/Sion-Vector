@@ -1,5 +1,5 @@
-#ifndef SION_VECTOR_H
-#define SION_VECTOR_H
+#ifndef SION_VECTOR
+#define SION_VECTOR
 
 #include <string>
 #include <algorithm>
@@ -47,5 +47,5 @@ namespace sion
 }
 
 #include "sion-vector.cpp"
-#endif // SION_VECTOR_H
+#endif // SION_VECTOR
 
