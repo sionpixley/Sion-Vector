@@ -36,5 +36,8 @@
 main.cpp
 *.py
 /.idea
-random.csv
+*.csv
+
+# For releases
+*.tbz2
 
