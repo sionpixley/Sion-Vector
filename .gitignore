@@ -35,4 +35,6 @@
 # For testing
 main.cpp
 *.py
+/.idea
+random.csv
 
