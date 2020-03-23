@@ -1,6 +1,6 @@
 {
     "project-name": "custom-cpp-vector",
-    "version": "v1.3.2",
+    "version": "v1.3.3",
     "description": "Making a custom vector implementation.",
     "author": "Sion Pixley",
     "license": "MIT; LICENSE",
