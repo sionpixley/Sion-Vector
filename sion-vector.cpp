@@ -1,4 +1,4 @@
-#include "sion-vector.h"
+#include "sion-vector"
 
 
 template<class type>
