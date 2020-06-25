@@ -1,13 +1,13 @@
 #include "sion-Vector"
 
-template<class Type>
+template<typename Type>
 sion::Vector<Type>::Vector() {
     max_length = 10;
     length = 0;
     elements = (Type*)(std::malloc(max_length * sizeof(Type)));
 }
 
-template<class Type>
+template<typename Type>
 sion::Vector<Type>::Vector(const sion::Vector<Type>& that) {
     this.max_length = that.max_length;
     this.length = that.length;
@@ -17,12 +17,12 @@ sion::Vector<Type>::Vector(const sion::Vector<Type>& that) {
     }
 }
 
-template<class Type>
+template<typename Type>
 sion::Vector<Type>::~Vector() {
     std::free(elements);
 }
 
-template<class Type>
+template<typename Type>
 int sion::Vector<Type>::push_back(Type item) {
     try {
         if(length == max_length) {
@@ -43,7 +43,7 @@ int sion::Vector<Type>::push_back(Type item) {
     }
 }
 
-template<class Type>
+template<typename Type>
 Type sion::Vector<Type>::pop_back() {
     if(length == 0) {
         Type t;
@@ -56,12 +56,12 @@ Type sion::Vector<Type>::pop_back() {
     }
 }
 
-template<class Type>
+template<typename Type>
 size_t sion::Vector<Type>::size() {
     return length;
 }
 
-template<class Type>
+template<typename Type>
 int sion::Vector<Type>::clear() {
     try {
         std::free(elements);
@@ -75,7 +75,7 @@ int sion::Vector<Type>::clear() {
     }
 }
 
-template<class Type>
+template<typename Type>
 void sion::Vector<Type>::sort(char order) {
     if(order == 'a') {
         std::sort(begin(), end());
@@ -88,7 +88,7 @@ void sion::Vector<Type>::sort(char order) {
     }
 }
 
-template<class Type>
+template<typename Type>
 sion::Vector<Type> sion::Vector<Type>::sorted(char order) {
     Vector<Type> v = *this;
     if(order == 'a') {
@@ -103,30 +103,30 @@ sion::Vector<Type> sion::Vector<Type>::sorted(char order) {
     return v;
 }
 
-template<class Type>
+template<typename Type>
 void sion::Vector<Type>::reverse() {
     std::reverse(begin(), end());
 }
 
-template<class Type>
+template<typename Type>
 sion::Vector<Type> sion::Vector<Type>::reversed() {
     Vector<Type> v = *this;
     std::reverse(v.begin(), v.end());
     return v;
 }
 
-template<class Type>
+template<typename Type>
 Type* sion::Vector<Type>::begin() {
     return elements;
 }
 
-template<class Type>
+template<typename Type>
 Type* sion::Vector<Type>::end() {
     return elements + length;
 }
 
 /*
- template<class Type>
+ template<typename Type>
  Type* sion::Vector<Type>::rbegin()
  {
     return elements + length;
@@ -134,14 +134,14 @@ Type* sion::Vector<Type>::end() {
  */
 
 /*
- template<class Type>
+ template<typename Type>
  Type* sion::Vector<Type>::rend()
  {
     return elements;
  }
  */
 
-template<class Type>
+template<typename Type>
 sion::Vector<Type>& sion::Vector<Type>::operator =(const sion::Vector<Type>& that) {
     if(this != &that) {
         std::free(this.elements);
@@ -155,7 +155,7 @@ sion::Vector<Type>& sion::Vector<Type>::operator =(const sion::Vector<Type>& tha
     return *this;
 }
 
-template<class Type>
+template<typename Type>
 Type& sion::Vector<Type>::operator [](size_t index) {
     if((index >= length) || (index < 0)) {
         throw std::out_of_range("Index out of bounds.");

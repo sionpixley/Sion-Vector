@@ -5,7 +5,7 @@
 #include <algorithm>
 
 namespace sion {
-    template<class Type>
+    template<typename Type>
     class Vector {
     private:
         Type* elements;
