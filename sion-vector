@@ -1,51 +1,47 @@
-#ifndef SION_VECTOR
-#define SION_VECTOR
+#ifndef __SION_VECTOR__
+#define __SION_VECTOR__
 
 #include <string>
 #include <algorithm>
 
-
-namespace sion
-{
-    template<class type>
-    class vector
-    {
+namespace sion {
+    template<class Type>
+    class Vector {
     private:
-        type* elements;
+        Type* elements;
         size_t max_length;
         size_t length;
         
     public:
         // default constructor, copy constructor, and destructor
-        vector();
-        vector(const vector<type>& obj);
-        ~vector();
+        Vector();
+        Vector(const Vector<type>& that);
+        ~Vector();
         
         // class methods
-        int push_back(type item);
-        type pop_back();
+        int push_back(Type item);
+        Type pop_back();
         size_t size();
         int clear();
-        void sort();
-        void sort(std::string mode);
-        vector<type> sorted();
-        vector<type> sorted(std::string mode);
+        void sort(char order='a');
+        Vector<Type> sorted(char order='a');
         void reverse();
-        vector<type> reversed();
+        Vector<Type> reversed();
         
         // iterator stuff
-        using iterator = type*;
-        type* begin();
-        type* end();
-        //type* rbegin();
-        //type* rend();
+        using iterator = Type*;
+        Type* begin();
+        Type* end();
+        //using reverse_iterator = Type*;
+        //Type* rbegin();
+        //Type* rend();
         
         // = and [] operators
-        vector<type>& operator =(const vector<type>& obj);
-        type& operator [](size_t index);
+        Vector<Type>& operator =(const Vector<Type>& that);
+        Type& operator [](size_t index);
     };
 }
 
 #include "sion-vector.cpp"
-#endif // SION_VECTOR
+#endif // Sion's vector implementation
 
