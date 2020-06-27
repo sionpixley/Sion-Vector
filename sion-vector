@@ -18,26 +18,33 @@ namespace sion {
         Vector();
         Vector(const Vector<type>& that);
         ~Vector();
-        
-        // class methods
-        int push_back(Type item);
-        Type pop_back();
-        size_t size();
-        int clear();
-        void sort(char order='a');
-        Vector<Type> sorted(char order='a');
-        void reverse();
-        Vector<Type> reversed();
-        
-        // iterator stuff
+
+        // methods for iterators
         using iterator = Type*;
         Type* begin();
         Type* end();
         //using reverse_iterator = Type*;
         //Type* rbegin();
         //Type* rend();
+
+        // methods to get basic information about the Vector
+        size_t size();
+        bool is_empty();
+
+        // methods to insert and remove elements
+        int push_back(Type item);
+        Type pop_back();
+        int clear();
+
+        // methods to sort elements
+        void sort(char order='a');
+        Vector<Type> sorted(char order='a');
         
-        // = and [] operators
+        // methods to reverse elements
+        void reverse();
+        Vector<Type> reversed();
+        
+        // operators
         Vector<Type>& operator =(const Vector<Type>& that);
         Type& operator [](size_t index);
     };

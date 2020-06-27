@@ -191,3 +191,8 @@ Type& sion::Vector<Type>::operator [](size_t index) {
     }
 }
 
+template<typename Type>
+bool sion::Vector<Type>::is_empty() {
+    return (length == 0);
+}
+
