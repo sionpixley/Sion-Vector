@@ -77,30 +77,56 @@ int sion::Vector<Type>::clear() {
 
 template<typename Type>
 void sion::Vector<Type>::sort(char order) {
-    if(order == 'a') {
-        std::sort(begin(), end());
-    }
-    else if(order == 'd') {
-        std::sort(begin(), end(), std::greater<Type>());
+    auto vec_type = typeid(Type);
+    if((vec_type == typeid(int)) ||
+       (vec_type == typeid(long)) || 
+       (vec_type == typeid(long long)) || 
+       (vec_type == typeid(float)) || 
+       (vec_type == typeid(double)) ||
+       (vec_type == typeid(long double)) ||
+       (vec_type == typeid(char)) ||
+       (vec_type == typeid(std::string))) {
+        if(order == 'a') {
+            std::sort(begin(), end());
+        }
+        else if(order == 'd') {
+            std::sort(begin(), end(), std::greater<Type>());
+        }
+        else {
+            throw std::invalid_argument("\"order\" parameter needs to be either 'a' or 'd'.");
+        }
     }
     else {
-        throw std::invalid_argument("\"order\" parameter needs to be either 'a' or 'd'.");
+        throw std::invalid_argument("The Vector must hold either a number, std::string, or char type for the .sort() function to be used.");
     }
 }
 
 template<typename Type>
 sion::Vector<Type> sion::Vector<Type>::sorted(char order) {
     Vector<Type> v = *this;
-    if(order == 'a') {
-        std::sort(v.begin(), v.end());
-    }
-    else if(order == 'd') {
-        std::sort(v.begin(), v.end(), std::greater<Type>());
+    auto vec_type = typeid(Type);
+    if((vec_type == typeid(int)) ||
+       (vec_type == typeid(long)) ||
+       (vec_type == typeid(long long)) ||
+       (vec_type == typeid(float)) ||
+       (vec_type == typeid(double)) ||
+       (vec_type == typeid(long double)) ||
+       (vec_type == typeid(char)) ||
+       (vec_type == typeid(std::string))) {
+        if(order == 'a') {
+            std::sort(v.begin(), v.end());
+        }
+        else if(order == 'd') {
+            std::sort(v.begin(), v.end(), std::greater<Type>());
+        }
+        else {
+            throw std::invalid_argument("\"order\" parameter needs to be either 'a' or 'd'.");
+        }
+        return v;
     }
     else {
-        throw std::invalid_argument("\"order\" parameter needs to be either 'a' or 'd'.");
+        throw std::invalid_argument("The Vector must hold either a number, std::string, or char type for the .sorted() function to be used.");
     }
-    return v;
 }
 
 template<typename Type>
