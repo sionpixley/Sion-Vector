@@ -14,9 +14,11 @@ namespace sion {
         size_t length;
         
     public:
-        // default constructor, copy constructor, and destructor
+        // constructors
         Vector();
         Vector(const Vector<type>& that);
+
+        // destructor
         ~Vector();
 
         // methods for iterators
