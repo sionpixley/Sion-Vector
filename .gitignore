@@ -37,8 +37,8 @@ main.cpp
 *.py
 /.idea
 *.csv
+/.vscode
 
 # For releases
 *.tbz2
 .DS_Store
-
