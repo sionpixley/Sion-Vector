@@ -46,18 +46,18 @@ namespace sion {
         int clear();
 
         // sorting
-        void sort(char order='a');
+        Vector<Type>& sort(char order='a');
         Vector<Type> sorted(char order='a') const;
         
         // reversing
-        void reverse();
+        Vector<Type>& reverse();
         Vector<Type> reversed() const;
         
         // operators
         Vector<Type>& operator =(const Vector<Type>& that);
         reference operator [](size_t index);
         const_reference operator [](size_t index) const;
-        Vector<Type> operator +(const Vector<Type>& that);
+        Vector<Type> operator +(const Vector<Type>& that) const;
         Vector<Type>& operator +=(const Vector<Type>& that);
     };
 }

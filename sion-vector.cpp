@@ -134,7 +134,7 @@ int sion::Vector<Type>::clear() {
 ----------------SORTING-----------------------
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ */
 template<typename Type>
-void sion::Vector<Type>::sort(char order) {
+sion::Vector<Type>& sion::Vector<Type>::sort(char order) {
     if((typeid(Type) == typeid(int)) ||
        (typeid(Type) == typeid(long)) || 
        (typeid(Type) == typeid(long long)) || 
@@ -152,6 +152,7 @@ void sion::Vector<Type>::sort(char order) {
         else {
             throw std::invalid_argument("\"order\" parameter needs to be either 'a' or 'd'.");
         }
+        return *this;
     }
     else {
         throw std::invalid_argument("The Vector must hold either a number, std::string, or char type for the .sort() function to be used.");
@@ -189,8 +190,9 @@ sion::Vector<Type> sion::Vector<Type>::sorted(char order) const {
 ----------------REVERSING-----------------------
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ */
 template<typename Type>
-void sion::Vector<Type>::reverse() {
+sion::Vector<Type>& sion::Vector<Type>::reverse() {
     std::reverse(begin(), end());
+    return *this;
 }
 
 template<typename Type>
@@ -238,7 +240,7 @@ typename sion::Vector<Type>::const_reference sion::Vector<Type>::operator [](siz
 }
 
 template<typename Type>
-sion::Vector<Type> sion::Vector<Type>::operator +(const sion::Vector<Type>& that) {
+sion::Vector<Type> sion::Vector<Type>::operator +(const sion::Vector<Type>& that) const {
     Vector<Type> v = *this;
     size_t _size = that.size();
     for(size_t i = 0; i < _size; i += 1) {
