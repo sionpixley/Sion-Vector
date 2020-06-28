@@ -16,22 +16,30 @@ namespace sion {
     public:
         // constructors
         Vector();
-        Vector(const Vector<type>& that);
+        Vector(const Vector<Type>& that);
 
         // destructor
         ~Vector();
 
         // methods for iterators
         using iterator = Type*;
-        Type* begin();
-        Type* end();
+        using const_iterator = const Type*;
+        iterator begin() noexcept;
+        const_iterator begin() const noexcept;
+        iterator end() noexcept;
+        const_iterator end() const noexcept;
         //using reverse_iterator = Type*;
-        //Type* rbegin();
-        //Type* rend();
+        //reverse_iterator rbegin();
+        //reverse_iterator rend();
+
+        // aliases for reference
+        using reference = Type&;
+        using const_reference = const Type&;
 
         // methods to get basic information about the Vector
-        size_t size();
-        bool is_empty();
+        size_t size() const noexcept;
+        size_t capacity() const noexcept;
+        bool is_empty() const noexcept;
 
         // methods to insert and remove elements
         int push_back(Type item);
@@ -40,15 +48,17 @@ namespace sion {
 
         // methods to sort elements
         void sort(char order='a');
-        Vector<Type> sorted(char order='a');
+        Vector<Type> sorted(char order='a') const;
         
         // methods to reverse elements
         void reverse();
-        Vector<Type> reversed();
+        Vector<Type> reversed() const;
         
         // operators
         Vector<Type>& operator =(const Vector<Type>& that);
-        Type& operator [](size_t index);
+        reference operator [](size_t index);
+        const_reference operator [](size_t index) const;
+        Vector<Type>& operator +(const Vector<Type>& that);
     };
 }
 

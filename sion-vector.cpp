@@ -1,4 +1,4 @@
-#include "sion-Vector"
+#include "sion-vector"
 
 template<typename Type>
 sion::Vector<Type>::Vector() {
@@ -9,11 +9,11 @@ sion::Vector<Type>::Vector() {
 
 template<typename Type>
 sion::Vector<Type>::Vector(const sion::Vector<Type>& that) {
-    this.max_length = that.max_length;
-    this.length = that.length;
-    this.elements = (Type*)(std::malloc(max_length * sizeof(Type)));
+    this->max_length = that.max_length;
+    this->length = that.length;
+    this->elements = (Type*)(std::malloc(max_length * sizeof(Type)));
     for(size_t i = 0; i < length; i += 1) {
-        this.elements[i] = that.elements[i];
+        this->elements[i] = that.elements[i];
     }
 }
 
@@ -57,7 +57,7 @@ Type sion::Vector<Type>::pop_back() {
 }
 
 template<typename Type>
-size_t sion::Vector<Type>::size() {
+size_t sion::Vector<Type>::size() const noexcept {
     return length;
 }
 
@@ -102,7 +102,7 @@ void sion::Vector<Type>::sort(char order) {
 }
 
 template<typename Type>
-sion::Vector<Type> sion::Vector<Type>::sorted(char order) {
+sion::Vector<Type> sion::Vector<Type>::sorted(char order) const {
     Vector<Type> v = *this;
     auto vec_type = typeid(Type);
     if((vec_type == typeid(int)) ||
@@ -135,19 +135,19 @@ void sion::Vector<Type>::reverse() {
 }
 
 template<typename Type>
-sion::Vector<Type> sion::Vector<Type>::reversed() {
+sion::Vector<Type> sion::Vector<Type>::reversed() const {
     Vector<Type> v = *this;
     std::reverse(v.begin(), v.end());
     return v;
 }
 
 template<typename Type>
-Type* sion::Vector<Type>::begin() {
+sion::Vector<Type>::iterator sion::Vector<Type>::begin() noexcept {
     return elements;
 }
 
 template<typename Type>
-Type* sion::Vector<Type>::end() {
+sion::Vector<Type>::iterator sion::Vector<Type>::end() noexcept {
     return elements + length;
 }
 
@@ -170,19 +170,19 @@ Type* sion::Vector<Type>::end() {
 template<typename Type>
 sion::Vector<Type>& sion::Vector<Type>::operator =(const sion::Vector<Type>& that) {
     if(this != &that) {
-        std::free(this.elements);
-        this.max_length = that.max_length;
-        this.length = that.length;
-        this.elements = (Type*)(std::malloc(max_length * sizeof(Type)));
+        std::free(this->elements);
+        this->max_length = that.max_length;
+        this->length = that.length;
+        this->elements = (Type*)(std::malloc(max_length * sizeof(Type)));
         for(size_t i = 0; i < length; i += 1) {
-            this.elements[i] = that.elements[i];
+            this->elements[i] = that.elements[i];
         }
     }
     return *this;
 }
 
 template<typename Type>
-Type& sion::Vector<Type>::operator [](size_t index) {
+sion::Vector<Type>::reference sion::Vector<Type>::operator [](size_t index) {
     if((index >= length) || (index < 0)) {
         throw std::out_of_range("Index out of bounds.");
     }
@@ -192,7 +192,41 @@ Type& sion::Vector<Type>::operator [](size_t index) {
 }
 
 template<typename Type>
-bool sion::Vector<Type>::is_empty() {
+bool sion::Vector<Type>::is_empty() const noexcept {
     return (length == 0);
+}
+
+template<typename Type>
+sion::Vector<Type>& sion::Vector<Type>::operator +(const sion::Vector<Type>& that) {
+    size_t _size = that.size();
+    for(size_t i = 0; i < _size; i += 1) {
+        this->push_back(that[i]);
+    }
+    return *this;
+}
+
+template<typename Type>
+sion::Vector<Type>::const_reference sion::Vector<Type>::operator [](size_t index) const {
+    if((index >= length) || (index < 0)) {
+        throw std::out_of_range("Index out of bounds.");
+    }
+    else {
+        return elements[index];
+    }
+}
+
+template<typename Type>
+size_t sion::Vector<Type>::capacity() const noexcept {
+    return max_length;
+}
+
+template<typename Type>
+sion::Vector<Type>::const_iterator sion::Vector<Type>::begin() const noexcept{
+    return elements;
+}
+
+template<typename Type>
+sion::Vector<Type>::const_iterator sion::Vector<Type>::end() const noexcept {
+    return elements + length;
 }
 
