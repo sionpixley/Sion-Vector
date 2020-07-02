@@ -81,3 +81,4 @@ namespace sion {
 
 #include "sion-vector.cpp"
 #endif // Sion's vector implementation
+

@@ -296,3 +296,4 @@ sion::Vector<Type>& sion::Vector<Type>::operator +=(const sion::Vector<Type>& th
     }
     return *this;
 }
+
