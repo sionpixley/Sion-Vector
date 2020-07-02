@@ -1,10 +1,11 @@
 {
     "project-name": "custom-cpp-vector",
     "version": "2.0.0",
-    "description": "Making a custom vector implementation.",
+    "description": "Making a custom vector implementation to expand my knowledge of C++.",
     "author": "Sion Pixley",
     "license": "MIT; LICENSE",
-    "main-file": "sion-vector",
+    "header-file": "sion-vector",
+    "implementation-file": "sion-vector.cpp",
     "dependencies": {
         "c++": "14"
     }
