@@ -52,6 +52,16 @@ typename sion::Vector<Type>::reverse_iterator sion::Vector<Type>::rbegin() noexc
 }
 
 template<typename Type>
+typename sion::Vector<Type>::const_reverse_iterator sion::Vector<Type>::rbegin() const noexcept {
+    return std::make_reverse_iterator(elements + length);
+}
+
+template<typename Type>
+typename sion::Vector<Type>::const_reverse_iterator sion::Vector<Type>::crbegin() const noexcept {
+    return std::make_reverse_iterator(elements + length);
+}
+
+template<typename Type>
 typename sion::Vector<Type>::iterator sion::Vector<Type>::end() noexcept {
     return elements + length;
 }
@@ -68,6 +78,16 @@ typename sion::Vector<Type>::const_iterator sion::Vector<Type>::cend() const noe
 
 template<typename Type>
 typename sion::Vector<Type>::reverse_iterator sion::Vector<Type>::rend() noexcept {
+    return std::make_reverse_iterator(elements);
+}
+
+template<typename Type>
+typename sion::Vector<Type>::const_reverse_iterator sion::Vector<Type>::rend() const noexcept {
+    return std::make_reverse_iterator(elements);
+}
+
+template<typename Type>
+typename sion::Vector<Type>::const_reverse_iterator sion::Vector<Type>::crend() const noexcept {
     return std::make_reverse_iterator(elements);
 }
 
