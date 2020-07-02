@@ -45,7 +45,7 @@ typename sion::Vector<Type>::iterator sion::Vector<Type>::end() noexcept {
 --------------CONST ITERATORS------------------
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ */
 template<typename Type>
-typename sion::Vector<Type>::const_iterator sion::Vector<Type>::begin() const noexcept{
+typename sion::Vector<Type>::const_iterator sion::Vector<Type>::begin() const noexcept {
     return elements;
 }
 
