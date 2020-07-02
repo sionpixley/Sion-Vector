@@ -24,13 +24,13 @@ namespace sion {
 
         // aliases for iterators
         using iterator = Type*;
-        using const_iterator = const iterator;
-        using reverse_iterator = std::reverse_iterator<iterator>;
-        using const_reverse_iterator = const reverse_iterator;
+        using const_iterator = const Type*;
+        using reverse_iterator = std::reverse_iterator<Type*>;
+        using const_reverse_iterator = const std::reverse_iterator<Type*>;
 
         // aliases for references
         using reference = Type&;
-        using const_reference = const reference;
+        using const_reference = const Type&;
 
         // iterators
         iterator begin() noexcept;

@@ -37,6 +37,14 @@ typename sion::Vector<Type>::iterator sion::Vector<Type>::begin() noexcept {
 }
 
 template<typename Type>
+typename sion::Vector<Type>::iterator sion::Vector<Type>::end() noexcept {
+    return elements + length;
+}
+
+/* \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+--------------CONST ITERATORS------------------
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ */
+template<typename Type>
 typename sion::Vector<Type>::const_iterator sion::Vector<Type>::begin() const noexcept{
     return elements;
 }
@@ -44,26 +52,6 @@ typename sion::Vector<Type>::const_iterator sion::Vector<Type>::begin() const no
 template<typename Type>
 typename sion::Vector<Type>::const_iterator sion::Vector<Type>::cbegin() const noexcept {
     return elements;
-}
-
-template<typename Type>
-typename sion::Vector<Type>::reverse_iterator sion::Vector<Type>::rbegin() noexcept {
-    return std::make_reverse_iterator(elements + length);
-}
-
-template<typename Type>
-typename sion::Vector<Type>::const_reverse_iterator sion::Vector<Type>::rbegin() const noexcept {
-    return std::make_reverse_iterator(elements + length);
-}
-
-template<typename Type>
-typename sion::Vector<Type>::const_reverse_iterator sion::Vector<Type>::crbegin() const noexcept {
-    return std::make_reverse_iterator(elements + length);
-}
-
-template<typename Type>
-typename sion::Vector<Type>::iterator sion::Vector<Type>::end() noexcept {
-    return elements + length;
 }
 
 template<typename Type>
@@ -76,9 +64,30 @@ typename sion::Vector<Type>::const_iterator sion::Vector<Type>::cend() const noe
     return elements + length;
 }
 
+/* \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+-------------REVERSE ITERATORS-----------------
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ */
+template<typename Type>
+typename sion::Vector<Type>::reverse_iterator sion::Vector<Type>::rbegin() noexcept {
+    return std::make_reverse_iterator(elements + length);
+}
+
 template<typename Type>
 typename sion::Vector<Type>::reverse_iterator sion::Vector<Type>::rend() noexcept {
     return std::make_reverse_iterator(elements);
+}
+
+/* \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+-----------CONST REVERSE ITERATORS-------------
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ */
+template<typename Type>
+typename sion::Vector<Type>::const_reverse_iterator sion::Vector<Type>::rbegin() const noexcept {
+    return std::make_reverse_iterator(elements + length);
+}
+
+template<typename Type>
+typename sion::Vector<Type>::const_reverse_iterator sion::Vector<Type>::crbegin() const noexcept {
+    return std::make_reverse_iterator(elements + length);
 }
 
 template<typename Type>
