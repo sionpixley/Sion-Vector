@@ -1,6 +1,7 @@
 #ifndef __SION_VECTOR__
 #define __SION_VECTOR__
 
+#include <iterator>
 #include <string>
 #include <algorithm>
 #include <typeinfo>
@@ -24,12 +25,15 @@ namespace sion {
         // iterators
         using iterator = Type*;
         using const_iterator = const Type*;
+        using reverse_iterator = std::reverse_iterator<iterator>;
         iterator begin() noexcept;
         const_iterator begin() const noexcept;
         const_iterator cbegin() const noexcept;
+        reverse_iterator rbegin() noexcept;
         iterator end() noexcept;
         const_iterator end() const noexcept;
         const_iterator cend() const noexcept;
+        reverse_iterator rend() noexcept;
 
         // aliases for reference
         using reference = Type&;
