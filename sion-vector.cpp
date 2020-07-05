@@ -122,7 +122,7 @@ size_t sion::Vector<Type>::capacity() const noexcept {
 ------------ADDING AND REMOVING----------------
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ */
 template<typename Type>
-int sion::Vector<Type>::push_back(Type item) {
+int sion::Vector<Type>::push_back(const Type item) {
     try {
         if(length == max_length) {
             max_length *= 2;
@@ -173,7 +173,7 @@ int sion::Vector<Type>::clear() {
 ----------------SORTING-----------------------
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ */
 template<typename Type>
-sion::Vector<Type>& sion::Vector<Type>::sort(char order) {
+sion::Vector<Type>& sion::Vector<Type>::sort(const char order) {
     if((typeid(Type) == typeid(int)) ||
        (typeid(Type) == typeid(long)) || 
        (typeid(Type) == typeid(long long)) || 
@@ -199,7 +199,7 @@ sion::Vector<Type>& sion::Vector<Type>::sort(char order) {
 }
 
 template<typename Type>
-sion::Vector<Type> sion::Vector<Type>::sorted(char order) const {
+sion::Vector<Type> sion::Vector<Type>::sorted(const char order) const {
     Vector<Type> v = *this;
     v.sort(order);
     return v;
@@ -239,7 +239,7 @@ sion::Vector<Type>& sion::Vector<Type>::operator =(const sion::Vector<Type>& tha
 }
 
 template<typename Type>
-typename sion::Vector<Type>::reference sion::Vector<Type>::operator [](size_t index) {
+typename sion::Vector<Type>::reference sion::Vector<Type>::operator [](const size_t index) {
     if((index >= length) || (index < 0)) {
         throw std::out_of_range("Index out of bounds.");
     }
@@ -249,7 +249,7 @@ typename sion::Vector<Type>::reference sion::Vector<Type>::operator [](size_t in
 }
 
 template<typename Type>
-typename sion::Vector<Type>::const_reference sion::Vector<Type>::operator [](size_t index) const {
+typename sion::Vector<Type>::const_reference sion::Vector<Type>::operator [](const size_t index) const {
     if((index >= length) || (index < 0)) {
         throw std::out_of_range("Index out of bounds.");
     }
