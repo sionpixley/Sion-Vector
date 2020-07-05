@@ -201,28 +201,8 @@ sion::Vector<Type>& sion::Vector<Type>::sort(char order) {
 template<typename Type>
 sion::Vector<Type> sion::Vector<Type>::sorted(char order) const {
     Vector<Type> v = *this;
-    if((typeid(Type) == typeid(int)) ||
-       (typeid(Type) == typeid(long)) ||
-       (typeid(Type) == typeid(long long)) ||
-       (typeid(Type) == typeid(float)) ||
-       (typeid(Type) == typeid(double)) ||
-       (typeid(Type) == typeid(long double)) ||
-       (typeid(Type) == typeid(char)) ||
-       (typeid(Type) == typeid(std::string))) {
-        if(order == 'a') {
-            std::sort(v.begin(), v.end());
-        }
-        else if(order == 'd') {
-            std::sort(v.begin(), v.end(), std::greater<Type>());
-        }
-        else {
-            throw std::invalid_argument("\"order\" parameter needs to be either 'a' or 'd'.");
-        }
-        return v;
-    }
-    else {
-        throw std::invalid_argument("The Vector must hold either a number, std::string, or char type for the .sorted() function to be used.");
-    }
+    v.sort(order);
+    return v;
 }
 
 /* \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
@@ -237,7 +217,7 @@ sion::Vector<Type>& sion::Vector<Type>::reverse() {
 template<typename Type>
 sion::Vector<Type> sion::Vector<Type>::reversed() const {
     Vector<Type> v = *this;
-    std::reverse(v.begin(), v.end());
+    v.reverse();
     return v;
 }
 
