@@ -1,51 +1,84 @@
-#ifndef SION_VECTOR
-#define SION_VECTOR
+#ifndef __SION_VECTOR__
+#define __SION_VECTOR__
 
+#include <iterator>
 #include <string>
 #include <algorithm>
+#include <typeinfo>
 
-
-namespace sion
-{
-    template<class type>
-    class vector
-    {
+namespace sion {
+    template<typename Type>
+    class Vector {
     private:
-        type* elements;
+        Type* elements;
         size_t max_length;
         size_t length;
         
     public:
-        // default constructor, copy constructor, and destructor
-        vector();
-        vector(const vector<type>& obj);
-        ~vector();
-        
-        // class methods
-        int push_back(type item);
-        type pop_back();
-        size_t size();
+        // constructors
+        Vector();
+        Vector(const Vector<Type>& that);
+
+        // destructor
+        ~Vector();
+
+        // aliases for iterators
+        using iterator = Type*;
+        using const_iterator = const Type*;
+        using reverse_iterator = std::reverse_iterator<Type*>;
+        using const_reverse_iterator = const std::reverse_iterator<Type*>;
+
+        // aliases for references
+        using reference = Type&;
+        using const_reference = const Type&;
+
+        // iterators
+        iterator begin() noexcept;
+        iterator end() noexcept;
+
+        // const iterators
+        const_iterator begin() const noexcept;
+        const_iterator cbegin() const noexcept;
+        const_iterator end() const noexcept;
+        const_iterator cend() const noexcept;
+
+        // reverse iterators
+        reverse_iterator rbegin() noexcept;
+        reverse_iterator rend() noexcept;
+
+        // const reverse iterators
+        const_reverse_iterator rbegin() const noexcept;
+        const_reverse_iterator crbegin() const noexcept;
+        const_reverse_iterator rend() const noexcept;
+        const_reverse_iterator crend() const noexcept;
+
+        // capacity
+        size_t size() const noexcept;
+        size_t capacity() const noexcept;
+        bool is_empty() const noexcept;
+
+        // adding and removing
+        int push_back(const Type item);
+        Type pop_back();
         int clear();
-        void sort();
-        void sort(std::string mode);
-        vector<type> sorted();
-        vector<type> sorted(std::string mode);
-        void reverse();
-        vector<type> reversed();
+
+        // sorting
+        Vector<Type>& sort(const char order='a');
+        Vector<Type> sorted(const char order='a') const;
         
-        // iterator stuff
-        using iterator = type*;
-        type* begin();
-        type* end();
-        //type* rbegin();
-        //type* rend();
+        // reversing
+        Vector<Type>& reverse();
+        Vector<Type> reversed() const;
         
-        // = and [] operators
-        vector<type>& operator =(const vector<type>& obj);
-        type& operator [](size_t index);
+        // operators
+        Vector<Type>& operator =(const Vector<Type>& that);
+        reference operator [](const size_t index);
+        const_reference operator [](const size_t index) const;
+        Vector<Type> operator +(const Vector<Type>& that) const;
+        Vector<Type>& operator +=(const Vector<Type>& that);
     };
 }
 
 #include "sion-vector.cpp"
-#endif // SION_VECTOR
+#endif // Sion's vector implementation
 
